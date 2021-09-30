@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import { useState } from 'react';
 import Head from 'next/head';
 
 import { getAllPosts, getPostBySlug } from '../../lib/getPosts';
@@ -11,8 +12,27 @@ import { IPost } from '../../interfaces/IPosts';
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const router = useRouter();
 
+    const [username, setUsername] = useState('');
+    const [text, setText] = useState('');
+
     if (!router.isFallback && !post?.slug) {
         return <ErrorPage statusCode={404} />
+    }
+
+    async function createComment(e: any) {
+        e.preventDefault();
+
+        try {
+            await fetch(`/api/comment?slug=${post?.slug}`, {
+                method: 'POST',
+                body: JSON.stringify({ username, text }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+        } catch(_) {
+            throw new Error('Unexpected error occurred')
+        }
     }
 
     return (
@@ -44,6 +64,13 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
                             dangerouslySetInnerHTML={{ __html: post?.content }}
                         />
                     </article>
+
+                    <form onSubmit={createComment}>
+                        <input type="text" placeholder="Seu nome" onChange={e => setUsername(e.target.value)} />
+                        <input type="text" placeholder="Comentário" onChange={e => setText(e.target.value)} />
+
+                        <button type="submit">Enviar</button>
+                    </form>
                 </div>
             }
         </main>
@@ -51,6 +78,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
 }
 
 export default Post;
+
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const post: IPost = getPostBySlug(params?.slug as string, [
