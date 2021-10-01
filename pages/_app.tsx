@@ -1,8 +1,9 @@
+import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
-import type { AppProps } from 'next/app';
-import '../public/style/main.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import '@public/style/main.css';
+
+export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
@@ -15,4 +16,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default MyApp;
+// export function reportWebVitals(metric: NextWebVitalsMetric) {
+//     console.log(metric)
+// }

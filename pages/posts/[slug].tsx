@@ -4,10 +4,9 @@ import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 
-import { getAllPosts, getPostBySlug } from '../../lib/getPosts';
-import markdownToHtml from '../../lib/parseMarkdownToHTML';
-
-import { IPost } from '../../interfaces/IPosts';
+import { getAllPosts, getPostBySlug } from '@lib/getPosts';
+import markdownToHtml from '@lib/parseMarkdownToHTML';
+import { IPost } from '@interfaces/IPosts';
 
 type Comment = {
     id: string,

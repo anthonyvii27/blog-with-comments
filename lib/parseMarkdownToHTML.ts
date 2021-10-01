@@ -1,5 +1,5 @@
-import remark from 'remark'
-import html from 'remark-html'
+import remark from 'remark';
+import html from 'remark-html';
 import { VFileCompatible } from 'vfile';
 
 export default async function markdownToHtml(markdown: VFileCompatible) {

@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { ApplicationEnvironment } from '../settings';
+import { ApplicationEnvironment } from '@settings/index';
 
 const url: string = ApplicationEnvironment.MongoURL || "";
 const dbName: string = ApplicationEnvironment.MongoDB || "";

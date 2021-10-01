@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { nanoid } from 'nanoid';
 
-import { IComment } from '../interfaces/IComments';
-
-import { connectToDatabase } from '../config/mongodb';
+import { IComment } from '@interfaces/IComments';
+import { connectToDatabase } from '@config/mongodb';
 
 async function CreateComments(req: NextApiRequest, res: NextApiResponse) {
     const { db } = await connectToDatabase();

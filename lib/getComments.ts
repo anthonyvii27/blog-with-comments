@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '../config/mongodb';
+import { connectToDatabase } from '@config/mongodb';
 
 async function GetComments(req: NextApiRequest, res: NextApiResponse) {
     const { db } = await connectToDatabase();

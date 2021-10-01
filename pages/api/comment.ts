@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import GetComments from '../../lib/getComments';
-import CreateComments from '../../lib/createComment';
+import CreateComments from '@lib/createComment';
+import GetComments from '@lib/getComments';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     switch(req.method) {

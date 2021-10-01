@@ -1,8 +1,8 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link';
 
-import { IPostList } from '../interfaces/IPosts';
-import { getAllPosts } from '../lib/getPosts';
+import { IPostList } from '@interfaces/IPosts';
+import { getAllPosts } from '@lib/getPosts';
 
 const Home: NextPage = ({ allPosts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
